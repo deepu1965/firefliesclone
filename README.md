@@ -570,3 +570,21 @@ Each meeting has:
 - Summary with overview, key points, and next steps
 - 3 action items (1 `completed`, 1 `in_progress`, 1 `pending`)
 - 3–5 topics / chapters with `start_time_ms` for player seek
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Meeting Detail
+
+![Meeting Detail](screenshots/meeting-detail.png)
+
+### Search
+
+![Search](screenshots/search.png)
+
+### Transcript Synchronization
+
+![Transcript Sync](screenshots/transcript-sync.png)
