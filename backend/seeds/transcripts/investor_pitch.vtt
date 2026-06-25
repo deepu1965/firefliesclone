@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:20.500
+<v Elena Vasquez>Alright team, this is our final prep session before the Series B pitch on Thursday. We have four investors in the room and about 45 minutes total. Let's make every slide count.
+
+00:00:21.000 --> 00:00:44.800
+<v Ryan Chen>I want to start by talking about the narrative arc. The story we're telling is: AI is transforming how teams capture and act on information from meetings. We're the only company doing this at the application layer rather than the infrastructure layer.
+
+00:00:45.000 --> 00:01:08.400
+<v Elena Vasquez>That's a strong positioning. How are we differentiating from Otter.ai and Fireflies?
+
+00:01:09.000 --> 00:01:32.000
+<v Ryan Chen>Otter is focused on transcription accuracy — it's a transcription tool that added some features. Fireflies is closer to us but they're going horizontal across all communication tools. We're going deep on meetings specifically, with richer analytics and workflow integrations.
+
+00:01:33.000 --> 00:01:56.600
+<v Nina Kowalski>From an investor perspective, the question they'll ask is "why now?" We need to nail the timing argument. The remote work shift, the proliferation of async collaboration tools, the cost reduction of LLMs — these all converge to make now the right moment.
+
+00:01:57.000 --> 00:02:20.200
+<v Elena Vasquez>Absolutely. Let's make sure slide 3 hits all three tailwinds clearly. Ryan, can you tighten the copy on that slide?
+
+00:02:21.000 --> 00:02:44.800
+<v Ryan Chen>Already on my list. I'll also add the TAM chart — we're looking at a $12B market for meeting productivity tools, growing at 18% CAGR.
+
+00:02:45.000 --> 00:03:08.400
+<v Nina Kowalski>The traction slides are our strongest asset. 340% year-over-year growth, $2.4M ARR, NPS of 72. These are exceptional numbers for a Series B.
+
+00:03:09.000 --> 00:03:32.000
+<v Elena Vasquez>Don't forget to include the enterprise pipeline. We have three Fortune 500 deals in late-stage negotiation totaling $1.2M in potential ACV.
+
+00:03:33.000 --> 00:03:56.600
+<v Ryan Chen>Good point. I'll add a pipeline slide after the traction section. We should also show the payback period on enterprise deals — it's 3 months, which is really strong.
+
+00:03:57.000 --> 00:04:20.200
+<v Nina Kowalski>One concern I have — investors will ask about the AI cost structure. Our gross margin is 68%, which is lower than pure software. We need to have a clear story about how that improves as we scale.
+
+00:04:21.000 --> 00:04:44.800
+<v Elena Vasquez>The scale story is: at current LLM API pricing, each additional meeting costs us about $0.12 in compute. As we grow volume, we negotiate better rates. And our roadmap includes building our own fine-tuned model by Q2 next year, which brings marginal cost down to under $0.02.
+
+00:04:45.000 --> 00:05:08.400
+<v Ryan Chen>That's a compelling efficiency story. We should make that explicit — show the margin expansion curve from 68% today to 78% at scale.
+
+00:05:09.000 --> 00:05:32.000
+<v Nina Kowalski>What about the team slide? Investors always scrutinize founding team backgrounds carefully.
+
+00:05:33.000 --> 00:05:56.600
+<v Elena Vasquez>I want to lead with the collective experience — 40 years combined in enterprise SaaS, two prior exits, Stanford AI Lab background. Don't bury those credentials.
+
+00:05:57.000 --> 00:06:20.200
+<v Ryan Chen>Agreed. I'll also mention that our VP of Engineering was a principal at Google Brain before joining. That adds credibility on the AI execution side.
+
+00:06:21.000 --> 00:06:44.800
+<v Nina Kowalski>Let's talk about the ask. $12M at a $60M pre-money valuation?
+
+00:06:45.000 --> 00:07:08.400
+<v Elena Vasquez>That's the plan. The $12M runway gives us 24 months to reach Series C milestones: $8M ARR, 15% market share in our defined segment, and the proprietary model ready for beta.
+
+00:07:09.000 --> 00:07:32.000
+<v Ryan Chen>One more thing — we should prepare for the "why not just use ChatGPT" question. Every investor will ask it.
+
+00:07:33.000 --> 00:07:56.600
+<v Elena Vasquez>The answer is context and integration. ChatGPT can summarize a transcript you paste in, but it has no knowledge of your company's recurring agenda items, your action item history, or your team's communication patterns. We're building a longitudinal memory layer on top of the AI.
+
+00:07:57.000 --> 00:08:20.000
+<v Nina Kowalski>That's the moat. Great. Action items: Ryan finalizes slides 3, 8, and 12 by tomorrow noon. Elena reviews the financial model assumptions. I'll prep the Q&A script with the 10 most likely investor questions. We reconvene Wednesday at 2pm for final rehearsal.
+
+00:08:21.000 --> 00:08:40.000
+<v Elena Vasquez>Perfect. Let's close this round. See you Wednesday.

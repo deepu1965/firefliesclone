@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* App surfaces — LIGHT THEME */
+  --ff-bg-base:        #F5F4F9;
+  --ff-bg-sidebar:     #FFFFFF;
+  --ff-bg-elevated:    #FFFFFF;
+  --ff-bg-surface:     #F0EFFE;
+  --ff-bg-active:      #EDE9FC;
+  --ff-bg-highlight:   #F0EFFE;
+
+  /* Borders */
+  --ff-border:         #EBEBEB;
+  --ff-border-active:  #7B5DE8;
+
+  /* Accent — purple */
+  --ff-accent:         #7B5DE8;
+  --ff-accent-light:   #6050C8;
+  --ff-accent-subtle:  #EDE9FC;
+
+  /* Text */
+  --ff-text-primary:   #1A1A2E;
+  --ff-text-body:      #3D3D5C;
+  --ff-text-secondary: #6B6B8E;
+  --ff-text-muted:     #9898B8;
+  --ff-text-dim:       #8888A8;
+  --ff-text-faint:     #C8C8E0;
+
+  /* Semantic */
+  --ff-success:        #10B981;
+  --ff-success-bg:     #ECFDF5;
+  --ff-warning:        #F59E0B;
+  --ff-error:          #EF4444;
+
+  /* Badges */
+  --ff-badge-bg:       #F0EFFE;
+  --ff-badge-text:     #6B6B8E;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--ff-bg-base);
+  color: var(--ff-text-primary);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Transcript search highlight ─── */
+mark {
+  background-color: rgba(123, 93, 232, 0.15);
+  color: #6050C8;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* ─── Custom thin scrollbars ─── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #D1D0E8 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #D1D0E8;
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #B8B5D8;
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.15s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.2s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.15s ease-out;
+}
+
+/* ─── Skeleton shimmer override — light theme ─── */
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #EDE9FC 25%,
+    #F5F2FF 50%,
+    #EDE9FC 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+}
+
+/* ─── Meeting card list animation ─── */
+.meeting-card-enter {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* ─── Smooth focus ring ─── */
+:focus-visible {
+  outline: 2px solid var(--ff-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Modal backdrop blur ─── */
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+}
+
+/* ─── Transcript active segment left accent ─── */
+.transcript-segment-active {
+  background-color: var(--ff-bg-highlight);
+  border-left: 2px solid var(--ff-accent);
+}
+
+/* ─── Responsive utility ─── */
+@media (max-width: 1023px) {
+  .sidebar-hidden {
+    display: none;
+  }
+}
+
+/* ─── Sidebar nav: hide scrollbar, keep scrolling functional ─── */
+.sidebar-nav {
+  scrollbar-width: none;
+}
+.sidebar-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Trial banner ─── */
+.trial-banner {
+  background: linear-gradient(90deg, #7B5DE8 0%, #A855F7 100%);
+}
+
+/* ─── Select element light theme ─── */
+select option {
+  background-color: #FFFFFF;
+  color: #1A1A2E;
+}

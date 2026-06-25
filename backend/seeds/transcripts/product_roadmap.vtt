@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:18.400
+<v Sarah Johnson>Good morning everyone. Today we're reviewing the product roadmap for the next two quarters. I want to align on priorities before we finalize the sprint plans.
+
+00:00:19.000 --> 00:00:42.600
+<v James Park>Thanks Sarah. I've been looking at the user research we collected last month, and there are a few clear themes. Users consistently mention that our search functionality feels slow and doesn't understand context well.
+
+00:00:43.000 --> 00:01:06.200
+<v Sarah Johnson>That aligns with what I'm hearing from sales. Prospects keep comparing us to Notion and asking why our search isn't as smart. What's the technical root cause?
+
+00:01:07.000 --> 00:01:30.800
+<v Rachel Torres>The root cause is that we're doing basic substring matching. We're not using any full-text search indexing. Adding FTS would dramatically improve relevance and performance — and enable stemming so searches for "organise" match "organised" and "organising".
+
+00:01:31.000 --> 00:01:54.500
+<v James Park>How long would FTS implementation take?
+
+00:01:55.000 --> 00:02:18.200
+<v Rachel Torres>Two to three weeks for the backend. We can use SQLite's built-in FTS5 engine — it's actually quite powerful, includes BM25 ranking and porter stemming out of the box. The main work is migrating the existing data and writing the new query layer.
+
+00:02:19.000 --> 00:02:42.800
+<v Sarah Johnson>Let's prioritize that for Q3. What are the other top items from user research?
+
+00:02:43.000 --> 00:03:06.400
+<v James Park>Second is the meeting detail page. Users want a cleaner layout — currently the transcript and summary feel disconnected. They want them side-by-side, like how Fireflies does it. And they want the transcript to highlight as the audio plays.
+
+00:03:07.000 --> 00:03:30.000
+<v Sarah Johnson>That's the bidirectional sync feature we've been deferring. Is it still technically complex?
+
+00:03:31.000 --> 00:03:54.600
+<v Rachel Torres>It's more nuanced than it looks. The forward direction — player moving and transcript highlighting — requires listening to the audio timeupdate event and doing a fast lookup of which segment is active. If we use a binary search on sorted segments, it's very efficient even at 4 calls per second.
+
+00:03:55.000 --> 00:04:18.200
+<v Rachel Torres>The reverse direction — clicking a transcript segment to seek the player — is much simpler. Just set audio.currentTime. The tricky part is preventing them from fighting each other when both fire simultaneously.
+
+00:04:19.000 --> 00:04:42.800
+<v James Park>Can we ship them separately? The reverse direction first, since it's simpler and high impact?
+
+00:04:43.000 --> 00:05:06.400
+<v Sarah Johnson>I'd prefer to ship both together. Partial implementation can actually feel worse to users — they'll click a segment, it seeks, but then the transcript doesn't stay in sync as it plays. We'd get negative feedback even though it's "working."
+
+00:05:07.000 --> 00:05:30.000
+<v Rachel Torres>Agreed. Full bidirectional sync is a two-week sprint if we have one focused engineer on it. I'd rather do it right.
+
+00:05:31.000 --> 00:05:54.600
+<v James Park>Third item from user research is action items. Users want to be able to edit and delete action items from the meeting detail page, not just mark them complete. Currently it's read-only unless you go to a separate page.
+
+00:05:55.000 --> 00:06:18.200
+<v Sarah Johnson>That's a UI change more than a backend change, right? The API already supports full CRUD for action items.
+
+00:06:19.000 --> 00:06:42.800
+<v Rachel Torres>Correct. Backend is ready. We just need to add an inline edit form and delete confirmation dialog to the ActionItemCard component. Half a sprint at most.
+
+00:06:43.000 --> 00:07:06.400
+<v Sarah Johnson>Great. So our Q3 priorities in order: FTS search backend, bidirectional transcript sync, inline action item editing, and the UI layout restructure for meeting detail. Any objections?
+
+00:07:07.000 --> 00:07:30.000
+<v James Park>No objections. One addition — can we also add loading skeleton states? Right now the page flashes blank white before content loads, which feels broken. It's a small investment for a big UX improvement.
+
+00:07:31.000 --> 00:07:54.600
+<v Rachel Torres>That's about two to three days. Easy win. I'll include it in the same sprint as the layout restructure.
+
+00:07:55.000 --> 00:08:18.200
+<v Sarah Johnson>Perfect. Let's finalize action items. Rachel, FTS5 implementation starting next sprint. James, write up the search UX spec by Wednesday. Rachel, bidirectional sync in sprint 2. Sarah will review the final roadmap doc with leadership by end of week.
+
+00:08:19.000 --> 00:08:40.000
+<v James Park>Quick question — are we planning any A/B tests for the layout changes? I want to make sure we have data to validate the decisions.
+
+00:08:41.000 --> 00:09:00.000
+<v Sarah Johnson>Yes, we'll instrument with Amplitude. I'll add that to the spec. Good call James.

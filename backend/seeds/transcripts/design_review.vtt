@@ -1,0 +1,73 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:16.400
+<v Maya Patel>Okay everyone, let's kick off the design system sprint review. We have a lot to cover — components, tokens, accessibility, and the handoff process.
+
+00:00:17.000 --> 00:00:40.800
+<v Liam O'Brien>Starting with tokens — I've finalized the color system. We have a dark navy-purple base palette, a single purple accent ramp, and semantic colors for success, warning, and error states. Everything is defined as CSS custom properties so they can be used in both Tailwind classes and vanilla CSS.
+
+00:00:41.000 --> 00:01:04.400
+<v Maya Patel>Great. Can you walk us through the naming convention?
+
+00:01:05.000 --> 00:01:28.000
+<v Liam O'Brien>Sure. Surface colors are prefixed with bg — bg-base for the page background, bg-sidebar for the sidebar, bg-elevated for cards and inputs. Text colors are text-primary, text-body, text-secondary, and so on down to text-faint for placeholder text.
+
+00:01:29.000 --> 00:01:52.600
+<v Zoe Kim>I love the hierarchy there. One question — are we using a single scale or will we have separate light and dark tokens?
+
+00:01:53.000 --> 00:02:16.200
+<v Liam O'Brien>For now, dark mode only. The design calls for a fixed dark theme — no system preference toggle. This simplifies implementation and keeps the Fireflies visual identity intact. We can revisit light mode as a future enhancement.
+
+00:02:17.000 --> 00:02:40.800
+<v Maya Patel>Agreed, let's keep scope tight. What about the component status? Which components are design-complete?
+
+00:02:41.000 --> 00:03:04.400
+<v Zoe Kim>Button, Input, Badge, and Checkbox are finalized. Modal and Dropdown are in review. Skeleton, Tabs, Tooltip, and Toast are still in design. I expect to have the remaining components done by end of next week.
+
+00:03:05.000 --> 00:03:28.000
+<v Liam O'Brien>I've already started implementing Button and Input in code. Both pass accessibility checks — keyboard navigation, focus states, ARIA labels. I'm using the exact border radius specs from Figma: 7px for buttons and inputs.
+
+00:03:29.000 --> 00:03:52.600
+<v Maya Patel>How are we handling the speaker color chips? The design shows five distinct colors assigned round-robin to participants.
+
+00:03:53.000 --> 00:04:16.200
+<v Zoe Kim>I've defined the five colors: blue for participant 0, purple for 1, orange for 2, teal for 3, and pink for 4. They're selected based on the participant's index in the meeting's participant list, not anything about the person. That way it's deterministic across sessions.
+
+00:04:17.000 --> 00:04:40.800
+<v Liam O'Brien>I like the determinism. But we need to make sure the same person gets the same color across different views — transcript chips, avatar circles on cards, action item assignee labels. All three have to use the same index mapping.
+
+00:04:41.000 --> 00:05:04.400
+<v Maya Patel>That's a great point. The way to guarantee that is to build a useSpeakerColorMap hook that takes the participant list and returns a map from speaker name to color index. Any component that needs speaker colors calls this hook.
+
+00:05:05.000 --> 00:05:28.000
+<v Zoe Kim>I'll spec that hook in the design document. The input is the participants array from the API, ordered by their join sequence in the meeting. The output is a Map object.
+
+00:05:29.000 --> 00:05:52.600
+<v Liam O'Brien>Sounds good. Let's also talk about the layout spec for the meeting detail page. I've seen a few mockups where the layout was stacked vertically, but the Fireflies layout is clearly a two-column view with the transcript on the left and summary on the right.
+
+00:05:53.000 --> 00:06:16.200
+<v Maya Patel>Yes — the player bar is full width at the top, then below it we have a 55/45 column split. Left column is the transcript panel with internal scrolling. Right column is the summary tabs. Neither column should scroll the page — only their internal content scrolls.
+
+00:06:17.000 --> 00:06:40.800
+<v Zoe Kim>I'll update the Figma spec to make this more explicit. I've also gotten feedback that the active transcript segment needs a stronger visual treatment — right now it's just a background color change. Can we add a left border accent as well?
+
+00:06:41.000 --> 00:07:04.400
+<v Liam O'Brien>I like that. A 3px left border in the accent purple, combined with the bg-highlight background color, should make the active segment very clear without being overwhelming.
+
+00:07:05.000 --> 00:07:28.000
+<v Maya Patel>Approved. Let's also make sure the active segment's timestamp changes color — it should show the accent-light color with a small play indicator next to it.
+
+00:07:29.000 --> 00:07:52.600
+<v Zoe Kim>I'll add that to the component spec. One more item — the MediaPlayer seek bar. We're using a custom div rather than an input range element to preserve the dark styling. The track is 4px tall, filled portion uses the accent color, and the thumb is a 10px circle.
+
+00:07:53.000 --> 00:08:16.200
+<v Liam O'Brien>I've already built a prototype of that. The main thing to be careful about is mouse drag behavior — you need to track mousemove on the document during drag, not just on the element, otherwise fast mouse movements lose the cursor.
+
+00:08:17.000 --> 00:08:40.000
+<v Maya Patel>Good implementation note. Please document that in the component code. Action items for this sprint: Zoe finishes component designs by Friday. Liam implements Button through Checkbox by Friday. Maya reviews accessibility on all interactive components Monday. Design doc update with layout spec by tomorrow.
+
+00:08:41.000 --> 00:09:00.000
+<v Zoe Kim>Quick question — are we doing any user testing before the final implementation sprint?
+
+00:09:01.000 --> 00:09:20.000
+<v Maya Patel>Yes, I've scheduled three sessions with beta users for next Wednesday. We'll validate the dark theme, the transcript layout, and the action item flow. Results will inform the final implementation sprint starting Thursday.

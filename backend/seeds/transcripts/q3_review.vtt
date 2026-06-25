@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:14.500
+<v Alice Chen>Alright everyone, let's get started with the Q3 product roadmap review. I want to make sure we cover all the major milestones and flag any blockers early.
+
+00:00:15.000 --> 00:00:38.200
+<v Bob Martinez>Thanks Alice. Before we dive in, I just want to say that the team has made incredible progress this quarter. We shipped the new onboarding flow last week and the early numbers look really promising.
+
+00:00:39.000 --> 00:01:02.400
+<v Alice Chen>That's great to hear, Bob. Can you give us the specific metrics? Our target was a 20% improvement in activation rate.
+
+00:01:03.000 --> 00:01:25.800
+<v Bob Martinez>We're seeing a 27% improvement so far. The biggest win was removing the mandatory credit card step during sign-up. Users are converting from trial to paid within 48 hours at a much higher rate.
+
+00:01:26.000 --> 00:01:50.000
+<v Carol Zhang>I can confirm from the data side. The funnel looks dramatically healthier. Drop-off at step 3 went from 62% to 38%. That's a huge improvement.
+
+00:01:51.000 --> 00:02:14.300
+<v Alice Chen>Excellent. Now let's talk about Q3 priorities. We have three major tracks: the AI assistant feature, the mobile app redesign, and infrastructure scalability.
+
+00:02:15.000 --> 00:02:40.500
+<v David Kim>On the AI assistant front — we're on track for the beta release by end of August. We've integrated the summarisation model and it's performing well on our internal test data. The main remaining work is the UI layer.
+
+00:02:41.000 --> 00:03:05.200
+<v Alice Chen>David, what's the confidence level on that timeline? I need to set expectations with the board for the September investor update.
+
+00:03:06.000 --> 00:03:29.800
+<v David Kim>I'd say 80% confident. The main risk is the latency on the summarisation API — we're seeing 4-6 second response times on longer meetings. We're working with the ML team to optimize the prompt length.
+
+00:03:30.000 --> 00:03:52.600
+<v Carol Zhang>I want to flag a data concern here. We're currently storing full transcript text in a single column, which makes our search performance terrible. We need to migrate to a segmented approach before the AI feature ships.
+
+00:03:53.000 --> 00:04:15.400
+<v Bob Martinez>How long would that migration take, Carol?
+
+00:04:16.000 --> 00:04:40.000
+<v Carol Zhang>About two sprints. We'd need to backfill existing transcripts and update the search index. I think we should prioritize this now rather than after launch — doing it post-launch with real user data is much riskier.
+
+00:04:41.000 --> 00:05:02.800
+<v Alice Chen>Agreed. Let's add that to the roadmap as a P0 item. Carol, can you put together a technical design document by Friday?
+
+00:05:03.000 --> 00:05:25.500
+<v Carol Zhang>Absolutely. I'll have it ready by Thursday EOD so the team has time to review before Friday's stand-up.
+
+00:05:26.000 --> 00:05:48.300
+<v David Kim>One more thing on the AI track — we've been evaluating whether to build our own summarisation model or continue using the third-party API. The cost difference is significant at scale.
+
+00:05:49.000 --> 00:06:12.000
+<v Alice Chen>What are the numbers looking like?
+
+00:06:13.000 --> 00:06:35.700
+<v David Kim>At our projected Q4 usage, the API costs would be around $80K per month. Building in-house would be about $200K upfront with ongoing costs of around $15K per month.
+
+00:06:36.000 --> 00:06:58.500
+<v Bob Martinez>That's a 14-month payback period. Seems worth it if we're confident in the growth trajectory.
+
+00:06:59.000 --> 00:07:22.000
+<v Alice Chen>Let's table this for the strategy session next week. We'll need the finance team to weigh in. Moving on — mobile app redesign. Where are we?
+
+00:07:23.000 --> 00:07:45.800
+<v Bob Martinez>The design team completed the new Figma specs last week. We're starting development this sprint. Target is a soft launch in the beta channel by September 15th.
+
+00:07:46.000 --> 00:08:10.200
+<v Alice Chen>And infrastructure scalability?
+
+00:08:11.000 --> 00:08:34.600
+<v Carol Zhang>We've completed the database sharding design. The team is currently testing the new architecture in staging. Load tests are showing 3x improvement in throughput. We're planning to migrate production in two phases — first the read replicas, then the write path.
+
+00:08:35.000 --> 00:09:00.000
+<v Alice Chen>Sounds good. Let's wrap up with action items. Bob, you're on the onboarding metrics report. David, AI timeline with risk assessment. Carol, schema migration design doc by Thursday. I'll schedule the finance strategy session for next Tuesday.
+
+00:09:01.000 --> 00:09:25.400
+<v Bob Martinez>Got it. Should we also document the build-vs-buy decision criteria so the finance team has context going into that meeting?
+
+00:09:26.000 --> 00:09:45.000
+<v Alice Chen>Good call. David, can you own that document as well?
+
+00:09:46.000 --> 00:10:00.000
+<v David Kim>Will do. I'll have both docs ready by Monday morning.

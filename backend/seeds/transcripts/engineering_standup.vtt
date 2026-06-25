@@ -1,0 +1,67 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:12.300
+<v Priya Patel>Morning everyone. Quick standup — let's keep it to 15 minutes. Who wants to go first?
+
+00:00:13.000 --> 00:00:35.600
+<v Tom Nguyen>I'll go. Yesterday I finished the database schema migration for the transcript segments table. The FTS5 virtual table is set up and the sync triggers are working. I ran a test insert and the search index is being populated correctly.
+
+00:00:36.000 --> 00:00:58.200
+<v Priya Patel>Nice, Tom. Any blockers?
+
+00:00:59.000 --> 00:01:22.800
+<v Tom Nguyen>One thing — I noticed the DELETE trigger pattern in the documentation uses a regular DELETE statement, but for external content FTS5 tables, you actually need to use the special insert-with-delete command. I fixed it in our codebase but worth flagging for the team.
+
+00:01:23.000 --> 00:01:46.400
+<v Priya Patel>Good catch. Can you update the migration docs so future engineers know about that gotcha?
+
+00:01:47.000 --> 00:02:10.000
+<v Tom Nguyen>Already done. Added a comment block in the migration file.
+
+00:02:11.000 --> 00:02:34.600
+<v Aisha Mohammed>I'll go next. I'm working on the repository layer. The BaseRepository with generic CRUD is mostly done. Today I'm implementing the MeetingRepository filter and pagination logic — the complex query with participant join.
+
+00:02:35.000 --> 00:02:58.200
+<v Priya Patel>How's the async session setup going? Any issues with the SQLAlchemy 2.x async patterns?
+
+00:02:59.000 --> 00:03:22.800
+<v Aisha Mohammed>It's cleaner than I expected. The key thing is making sure every repository method uses AsyncSession and awaits the execute calls. The main footgun is accidentally using the sync Session instead of AsyncSession in FastAPI routes — that causes a greenlet error at runtime.
+
+00:03:23.000 --> 00:03:46.400
+<v Tom Nguyen>Yeah, I hit that yesterday. Took me an hour to debug. The error message is pretty cryptic.
+
+00:03:47.000 --> 00:04:10.000
+<v Priya Patel>Should we add a type check or a lint rule to catch that?
+
+00:04:11.000 --> 00:04:34.600
+<v Aisha Mohammed>I'll add a type annotation check to the CI pipeline. If any function signature shows db: Session instead of db: AsyncSession, the build fails.
+
+00:04:35.000 --> 00:04:58.200
+<v Marcus Lee>My turn. Yesterday I set up the seed data framework. I have three of the five meetings seeded with realistic transcripts. The main challenge was getting the speaker labels consistent between the participants table and the transcript segments.
+
+00:04:59.000 --> 00:05:22.800
+<v Priya Patel>How did you solve that?
+
+00:05:23.000 --> 00:05:46.400
+<v Marcus Lee>I defined a speaker roster as a Python dataclass at the top of each meeting's seed block. The same objects are used when creating participants and when creating transcript segments. So the speaker_name in the segments always matches the name in participants.
+
+00:05:47.000 --> 00:06:10.000
+<v Priya Patel>Smart. That consistency is critical for the speaker color assignment to work correctly on the frontend.
+
+00:06:11.000 --> 00:06:34.600
+<v Marcus Lee>Exactly. Today I'm finishing the last two meetings and making sure the date distribution is correct — we need some meetings this week, last week, and last month so the date filters are testable.
+
+00:06:35.000 --> 00:06:58.200
+<v Tom Nguyen>Anything blocking?
+
+00:06:59.000 --> 00:07:22.800
+<v Marcus Lee>Just waiting for the sample audio file to be committed so I can verify the transcript timestamps don't exceed the audio duration. Can someone get that done today?
+
+00:07:23.000 --> 00:07:46.400
+<v Priya Patel>I'll handle that this morning. I'll find a royalty-free 15-minute MP3 and commit it to the frontend public folder.
+
+00:07:47.000 --> 00:08:10.000
+<v Aisha Mohammed>Good. I'll also double check that all the seeded meetings have audio_url set to the correct path.
+
+00:08:11.000 --> 00:08:30.000
+<v Priya Patel>Great. Wrap up — Tom is on FTS triggers and docs, Aisha is on repository layer and CI lint rule, Marcus is finishing seed data. I'm committing the audio file. Any blockers? No? See you tomorrow.
